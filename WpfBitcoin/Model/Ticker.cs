@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WpfBitcoin.Model
 {
+    /// <summary>
+    /// 取得したTicker情報のJSONをデシリアライズした結果を格納するクラス
+    /// </summary>
     public class Ticker
     {
         public string product_code { get; set; }
@@ -20,9 +23,12 @@ namespace WpfBitcoin.Model
         public float ltp { get; set; }
         public float volume { get; set; }
         public float volume_by_product { get; set; }
-        // 追加
-        public bool isError { get; set; }
-        public string errorMessage { get; set; }
+        // 追加プロパティ
+        public bool IsError { get; set; }
+        public string ErrorMessage { get; set; }
+        public string DisplayName { get; set; }
+        public string ChartUrl { get; set; }
+        public string ImageFile { get; set; }
     }
 
 }

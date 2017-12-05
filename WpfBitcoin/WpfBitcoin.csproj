@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="Common\DelegateCommand.cs" />
     <Compile Include="Common\ViewModelBase.cs" />
+    <Compile Include="Model\Market.cs" />
     <Compile Include="Model\BitCoinPrice.cs" />
     <Compile Include="Model\Ticker.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
