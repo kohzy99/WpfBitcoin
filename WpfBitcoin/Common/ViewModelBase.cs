@@ -23,10 +23,10 @@ namespace WpfBitcoin.Common
         /// <param name="propertyName">プロパティ名</param>
         protected virtual void RaisePropertyChanged(string propertyName)
         {
-            var h = this.PropertyChanged;
-            if ( h != null)
+            var handler = this.PropertyChanged;
+            if ( handler != null)
             {
-                h(this, new PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
