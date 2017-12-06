@@ -7,7 +7,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:WpfBitcoin"
         mc:Ignorable="d"
-        Title="" Width="Auto" Height="Auto">
+        Title="" Width="450" Height="270" MinWidth="450" MinHeight="270">
     <!--データコンテキスト-->
     <Window.DataContext>
         <vm:MainWindowViewModel/>
@@ -15,11 +15,8 @@
     <!--リソース-->
     <Window.Resources>
         <FontFamily x:Key="myFont">Arial Black</FontFamily>
-        <system:Double x:Key="mySize">20</system:Double>
-        <Style x:Key="ItemStyle1" TargetType="ListBoxItem">
-            <!--<Setter Property="VerticalContentAlignment" Value="Bottom"/>-->
-            <Setter Property="Height" Value="{Binding ElementName=listBox1,Path=Height,UpdateSourceTrigger=PropertyChanged}"/>
-        </Style>
+        <system:Double x:Key="mySizeSmall">20</system:Double>
+        <system:Double x:Key="mySizeLarge">40</system:Double>
     </Window.Resources>
     
     <!--画面描画開始-->
@@ -49,56 +46,30 @@
         
         <!--MainContents-->
         <Grid DockPanel.Dock="Top">
-            <ListBox x:Name="listBox1" BorderThickness="2" BorderBrush="Red" ItemsSource="{Binding Tickers}" ItemContainerStyle="{StaticResource ItemStyle1}">
+            <ListBox ItemsSource="{Binding Tickers}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Viewbox Stretch="Fill">
-                            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding ltp, StringFormat={}{0:C}, ConverterCulture=ja-JP}" Margin="15,2,5,2" FontFamily="{StaticResource myFont}"/>
-                        </Viewbox>
-                        <!--<Grid>
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
                                 <Image Source="{Binding ImageFile}" Width="32" Height="32" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <Label Content="{Binding DisplayName}" FontFamily="{StaticResource myFont}" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="{StaticResource mySize}"/>
+                                <Label Content="{Binding DisplayName}" FontFamily="{StaticResource myFont}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="{StaticResource mySizeSmall}"/>
                             </StackPanel>
-                            <Viewbox Grid.Column="1" HorizontalAlignment="Right">
-                                <TextBlock Text="{Binding ltp, StringFormat={}{0:C}, ConverterCulture=ja-JP}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15,2,5,2" FontFamily="{StaticResource myFont}"/>
-                            </Viewbox>
-                        </Grid>-->
+                            <TextBlock Grid.Column="1" Text="{Binding ltp, StringFormat={}{0:C}, ConverterCulture=ja-JP}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="15" FontFamily="{StaticResource myFont}" FontSize="{StaticResource mySizeLarge}"/>
+                        </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
+                <!--Itemの横幅をいっぱいまで拡げる--> 
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
             </ListBox>
         </Grid>
-        <!--<Grid DockPanel.Dock="Top">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            BTC
-            <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
-                <Image Source="../Resources/opengraph.png" Width="24" Height="24" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label Content="BTC" FontFamily="{StaticResource myFont}" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="{StaticResource mySize}"/>
-            </StackPanel>
-            <Viewbox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right">
-                <TextBlock Text="{Binding TickerBTC.ltp, StringFormat={}{0:C}, ConverterCulture=ja-JP}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15,2,5,2" FontFamily="{StaticResource myFont}"/>
-            </Viewbox>
 
-            BTC-FX
-            <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
-                <Image Source="../Resources/opengraph.png" Width="24" Height="24" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label Content="BTC-FX" FontFamily="{StaticResource myFont}" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="{StaticResource mySize}"/>
-            </StackPanel>
-            <Viewbox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
-                <TextBlock Text="{Binding TickerBTCFX.ltp, StringFormat={}{0:C}, ConverterCulture=ja-JP}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15,2,5,2" FontFamily="{StaticResource myFont}"/>
-            </Viewbox>
-        </Grid>-->
-        
     </DockPanel>
 </Window>

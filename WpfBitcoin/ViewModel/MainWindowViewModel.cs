@@ -46,33 +46,33 @@ namespace WpfBitcoin.ViewModel
             }
         }
 
-        private Ticker tickerBTC;
-        /// <summary>
-        /// Ticker情報（BTC)
-        /// </summary>
-        public Ticker TickerBTC
-        {
-            get { return this.tickerBTC; }
-            set
-            {
-                this.tickerBTC = value;
-                this.RaisePropertyChanged(nameof(TickerBTC));
-            }
-        }
+        //private Ticker tickerBTC;
+        ///// <summary>
+        ///// Ticker情報（BTC)
+        ///// </summary>
+        //public Ticker TickerBTC
+        //{
+        //    get { return this.tickerBTC; }
+        //    set
+        //    {
+        //        this.tickerBTC = value;
+        //        this.RaisePropertyChanged(nameof(TickerBTC));
+        //    }
+        //}
 
-        private Ticker tickerBTCFX;
-        /// <summary>
-        /// Ticker情報（BTCFX)
-        /// </summary>
-        public Ticker TickerBTCFX
-        {
-            get { return this.tickerBTCFX; }
-            set
-            {
-                this.tickerBTCFX = value;
-                this.RaisePropertyChanged(nameof(TickerBTCFX));
-            }
-        }
+        //private Ticker tickerBTCFX;
+        ///// <summary>
+        ///// Ticker情報（BTCFX)
+        ///// </summary>
+        //public Ticker TickerBTCFX
+        //{
+        //    get { return this.tickerBTCFX; }
+        //    set
+        //    {
+        //        this.tickerBTCFX = value;
+        //        this.RaisePropertyChanged(nameof(TickerBTCFX));
+        //    }
+        //}
 
         private DelegateCommand updateTicker;
         /// <summary>
