@@ -7,17 +7,26 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:WpfBitcoin"
         mc:Ignorable="d"
-        Title="" Height="200" Width="380" MinHeight="200" MinWidth="380">
+        Title="" Width="Auto" Height="Auto">
+    <!--データコンテキスト-->
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
+    <!--リソース-->
     <Window.Resources>
         <FontFamily x:Key="myFont">Arial Black</FontFamily>
         <system:Double x:Key="mySize">20</system:Double>
+        <Style x:Key="ItemStyle1" TargetType="ListBoxItem">
+            <!--<Setter Property="VerticalContentAlignment" Value="Bottom"/>-->
+            <Setter Property="Height" Value="{Binding ElementName=listBox1,Path=Height,UpdateSourceTrigger=PropertyChanged}"/>
+        </Style>
     </Window.Resources>
+    
+    <!--画面描画開始-->
     <DockPanel>
+        
         <!--header-->
-        <Grid DockPanel.Dock="Top" Background="#454545" VerticalAlignment="Center">
+        <Grid DockPanel.Dock="Top" Background="#454545" VerticalAlignment="Top" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -27,17 +36,43 @@
                 <Image Source="../Resources/update.png" Width="36" Height="36"/>
             </Button>
         </Grid>
+        
         <!--footer-->
-        <StatusBar DockPanel.Dock="Bottom">
+        <StatusBar DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
             <StatusBarItem HorizontalAlignment="Left">
-                <TextBlock Text="{Binding TickerBTC.errorMessage}" HorizontalAlignment="Left"/>
+                <TextBlock Text="{Binding Ticker[0].ErrorMessage}" HorizontalAlignment="Left"/>
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
-                <TextBlock Text="{Binding TickerBTC.timestamp, ConverterCulture=ja-JP}" HorizontalAlignment="Right"/>
+                <TextBlock Text="{Binding Tickers[0].timestamp, ConverterCulture=ja-JP}" HorizontalAlignment="Right"/>
             </StatusBarItem>
         </StatusBar>
+        
         <!--MainContents-->
         <Grid DockPanel.Dock="Top">
+            <ListBox x:Name="listBox1" BorderThickness="2" BorderBrush="Red" ItemsSource="{Binding Tickers}" ItemContainerStyle="{StaticResource ItemStyle1}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Viewbox Stretch="Fill">
+                            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding ltp, StringFormat={}{0:C}, ConverterCulture=ja-JP}" Margin="15,2,5,2" FontFamily="{StaticResource myFont}"/>
+                        </Viewbox>
+                        <!--<Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <Image Source="{Binding ImageFile}" Width="32" Height="32" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Label Content="{Binding DisplayName}" FontFamily="{StaticResource myFont}" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="{StaticResource mySize}"/>
+                            </StackPanel>
+                            <Viewbox Grid.Column="1" HorizontalAlignment="Right">
+                                <TextBlock Text="{Binding ltp, StringFormat={}{0:C}, ConverterCulture=ja-JP}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15,2,5,2" FontFamily="{StaticResource myFont}"/>
+                            </Viewbox>
+                        </Grid>-->
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <!--<Grid DockPanel.Dock="Top">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -46,7 +81,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <!--BTC-->
+            BTC
             <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
                 <Image Source="../Resources/opengraph.png" Width="24" Height="24" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <Label Content="BTC" FontFamily="{StaticResource myFont}" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="{StaticResource mySize}"/>
@@ -55,7 +90,7 @@
                 <TextBlock Text="{Binding TickerBTC.ltp, StringFormat={}{0:C}, ConverterCulture=ja-JP}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15,2,5,2" FontFamily="{StaticResource myFont}"/>
             </Viewbox>
 
-            <!--BTC-FX-->
+            BTC-FX
             <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
                 <Image Source="../Resources/opengraph.png" Width="24" Height="24" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <Label Content="BTC-FX" FontFamily="{StaticResource myFont}" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="{StaticResource mySize}"/>
@@ -63,6 +98,7 @@
             <Viewbox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
                 <TextBlock Text="{Binding TickerBTCFX.ltp, StringFormat={}{0:C}, ConverterCulture=ja-JP}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15,2,5,2" FontFamily="{StaticResource myFont}"/>
             </Viewbox>
-        </Grid>
+        </Grid>-->
+        
     </DockPanel>
 </Window>

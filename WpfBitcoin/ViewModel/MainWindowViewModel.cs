@@ -32,6 +32,20 @@ namespace WpfBitcoin.ViewModel
         /// </summary>
         public string WindowTitle { get; set; }
 
+        private List<Ticker> tickers;
+        /// <summary>
+        /// 取得したTicker情報をリスト形式で保持するプロパティ
+        /// </summary>
+        public List<Ticker> Tickers
+        {
+            get { return this.tickers; }
+            set
+            {
+                this.tickers = value;
+                this.RaisePropertyChanged(nameof(Tickers));
+            }
+        }
+
         private Ticker tickerBTC;
         /// <summary>
         /// Ticker情報（BTC)
@@ -86,6 +100,9 @@ namespace WpfBitcoin.ViewModel
         /// </summary>
         private async void SetPriceAsync()
         {
+            this.Tickers = await bitCoinPrice.GetTickerAsync();
+
+            /*
             var BTC = await bitCoinPrice.GetTickerAsync(bitCoinPrice.Url_BTC);
             var BTCFX = await bitCoinPrice.GetTickerAsync(bitCoinPrice.Url_BTCFX);
 
@@ -106,6 +123,7 @@ namespace WpfBitcoin.ViewModel
                 BTCFX.ltp = 0;
                 TickerBTCFX = BTCFX;
             }
+            */
         }
 
         /// <summary>

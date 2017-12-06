@@ -18,8 +18,8 @@ namespace WpfBitcoin.Model
 
         private static List<Market> markets = new List<Market>()
         {
-            new Market() { Product_code = "BTC_JPY", DisplayName = "BTC", ChartUrl="https://cryptowat.ch/bitflyer/btcjpy", ImageFile="Resources/opengraph.png" },
-            new Market() { Product_code = "FX_BTC_JPY", DisplayName = "BTC-FX", ChartUrl="https://cryptowat.ch/bitflyer/btcfxjpy", ImageFile="Resources/opengraph.png" },
+            new Market() { Product_code = "BTC_JPY", DisplayName = "BTC", ChartUrl="https://cryptowat.ch/bitflyer/btcjpy", ImageFile="../Resources/opengraph.png" },
+            new Market() { Product_code = "FX_BTC_JPY", DisplayName = "BTC-FX", ChartUrl="https://cryptowat.ch/bitflyer/btcfxjpy", ImageFile="../Resources/opengraph.png" },
         };
 
         public static List<Market> Markets
