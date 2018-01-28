@@ -46,7 +46,7 @@
         
         <!--MainContents-->
         <Grid DockPanel.Dock="Top">
-            <ListBox ItemsSource="{Binding Tickers}">
+            <ListBox ItemsSource="{Binding Tickers}" HorizontalContentAlignment="Stretch">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -63,11 +63,11 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
                 <!--Itemの横幅をいっぱいまで拡げる--> 
-                <ListBox.ItemContainerStyle>
+                <!--<ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                     </Style>
-                </ListBox.ItemContainerStyle>
+                </ListBox.ItemContainerStyle>-->
             </ListBox>
         </Grid>
 
